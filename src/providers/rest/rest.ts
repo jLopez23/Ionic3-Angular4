@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -14,21 +14,18 @@ and Angular DI.
 @Injectable()
 export class RestProvider {
 
-  private apiUrl = 'https://restcountries.eu/rest/v2/all';
+  private apiUrl = 'http://10.20.17.12:253/api/articles';
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
+
   }
 
   getCountries(): Observable<string[]> {
-    return this.http.get(this.apiUrl)
-    .map(this.extractData)
-    .catch(this.handleError);
-  }
+    let header = new HttpHeaders().set('Authorization', 'Bearer X7E7movOJndkbiNqUOuAZlNmJ68DAJJUznJIG3MT1Q5SCinM9gaaiTl4OLqo');
 
-  private extractData(res: Response) {
-    let body = res;
-    return body || { };
+    return this.http.get(this.apiUrl, {headers:header})
+    .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

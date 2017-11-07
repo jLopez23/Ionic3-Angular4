@@ -22,8 +22,9 @@ export class HomePage {
   getCountries() {
     this.rest.getCountries()
        .subscribe(
-         countries => this.countries = countries,
+         countries => {this.countries = countries; console.log("VALUE RECEIVED: ",this.countries)},
          error =>  this.errorMessage = <any>error);
+
   }
 
 }
