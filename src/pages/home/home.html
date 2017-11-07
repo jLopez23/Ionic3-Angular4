@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let c of countries">
+      <ion-avatar item-left>
+        <img src="{{c.flag}}">
+      </ion-avatar>
+      <h2><b>{{c.name}}</b></h2>
+      <p><b>Capital:</b> {{c.capital}}</p>
+      <p><b>Region:</b> {{c.region}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
